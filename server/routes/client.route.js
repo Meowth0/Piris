@@ -8,9 +8,21 @@ initRoute = router => {
   });
 
   router.route(`/client`).post((req, res) => {
-    new Client(req.body).save()
-      .then(client => res.json(client))
-      .catch(err => res.status(412).json(`Error occured: ${err}`));
+    Client.findOne({
+      $and: [
+        { name: req.body.name },
+        { surname: req.body.surname },
+        { patronymic: req.body.patronymic },
+      ]
+    })
+      .then(doc => {
+        if (doc) {
+          return res.status(409).json('Current client already exists. Please, try again');
+        }
+        new Client(req.body).save()
+          .then(client => res.json(client))
+          .catch(err => res.status(412).json(`Error occured: ${err}`));
+      })
   });
 
   router.route(`/client/:id`).get((req, res) => {

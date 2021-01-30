@@ -14,6 +14,10 @@ const clientSchema = new Schema({
   patronymic: {
     type: String,
     required: true,
+  },
+  birthday: {
+    type: Date,
+    required: true,
   }
 });
 
