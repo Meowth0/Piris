@@ -9,10 +9,14 @@ initRoute = router => {
 
   router.route(`/client`).post((req, res) => {
     Client.findOne({
-      $and: [
-        { name: req.body.name },
-        { surname: req.body.surname },
-        { patronymic: req.body.patronymic },
+      $or: [
+        {
+          $and: [
+            { passportSeries: req.body.passportSeries },
+            { passportNumber: req.body.passportNumber },
+          ]
+        },
+        { identificationNumber: req.body.identificationNumber }
       ]
     })
       .then(doc => {

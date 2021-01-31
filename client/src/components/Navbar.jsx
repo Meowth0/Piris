@@ -14,11 +14,11 @@ class Navbar extends React.PureComponent {
 
   render() {
     const { location } = this.props;
-    console.log(this.props);
+    const activePage = `/${location.pathname.split('/')[1]}`;
     return (
-      <BottomNavigation value={`/${location.pathname.split('/')[1]}`} showLabels>
+      <BottomNavigation value={activePage} showLabels>
         <BottomNavigationAction label="Clients" value={PAGES.CLIENT_LIST} icon={<PeopleIcon />} onClick={() => this.onPageChange(PAGES.CLIENT_LIST)} />
-        <BottomNavigationAction label="Client form" value={PAGES.CLIENT_FORM} icon={<PermIdentityIcon />} onClick={() => this.onPageChange(`${PAGES.CLIENT_FORM}/new`)} />
+        <BottomNavigationAction label="Client form" value={PAGES.CLIENT_FORM} icon={<PermIdentityIcon />} onClick={() => activePage !== PAGES.CLIENT_FORM && this.onPageChange(`${PAGES.CLIENT_FORM}/new`)} />
       </BottomNavigation>
     );
   }

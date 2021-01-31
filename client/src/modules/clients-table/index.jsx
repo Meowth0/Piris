@@ -65,7 +65,6 @@ class ClientsScreen extends React.PureComponent {
 
   render() {
     const { columns, rows, isLoading } = this.state;
-    console.log(rows);
     return (
       <TableContainer>
         <DataGrid

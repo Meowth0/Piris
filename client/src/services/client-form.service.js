@@ -15,6 +15,14 @@ const service = {
     .get(`${API_PATH}/client/${id}`)
     .then((res) => res.data)
     .catch((err) => console.log(err)),
+  getClients: () => axios
+    .get(`${API_PATH}/clients`)
+    .then((res) => res.data)
+    .catch((err) => console.log(err)),
+  removeClient: (id) => axios
+    .delete(`${API_PATH}/client/${id}`)
+    .then((res) => res)
+    .catch((err) => console.log(err)),
 };
 
 export default service;
