@@ -34,4 +34,12 @@ module.exports = {
     'married',
     'single',
   ],
+  ACCOUNT_TYPES: [
+    'active',
+    'passive',
+  ],
+  DEPOSIT_TYPES: [
+    'revocable',
+    'irrevocable',
+  ]
 };

@@ -3,6 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { PAGES } from '../../../constants';
 
 class ActionMenu extends React.PureComponent {
   constructor(props) {
@@ -10,7 +11,6 @@ class ActionMenu extends React.PureComponent {
 
     this.state = {
       anchorEl: null,
-      selectedIndex: 0,
     };
   }
 
@@ -18,18 +18,13 @@ class ActionMenu extends React.PureComponent {
     this.setState({ anchorEl });
   };
 
-  setSelectedIndex = (selectedIndex) => {
-    this.setState({ selectedIndex });
-  };
-
   handleClickListItem = (event) => {
     this.setAnchorEl(event.currentTarget);
   };
 
-  handleMenuItemClick = (event, index, removeFn) => {
-    this.setSelectedIndex(index);
+  handleMenuItemClick = (event, fn) => {
     this.setAnchorEl(null);
-    removeFn();
+    fn();
   };
 
   handleClose = () => {
@@ -37,8 +32,8 @@ class ActionMenu extends React.PureComponent {
   };
 
   render() {
-    const { removeFn } = this.props;
-    const { anchorEl, selectedIndex } = this.state;
+    const { removeFn, redirectToDeposit, redirectToDeposits } = this.props;
+    const { anchorEl } = this.state;
     return (
       <div>
         <IconButton
@@ -57,10 +52,21 @@ class ActionMenu extends React.PureComponent {
         >
           <MenuItem
             key="remove"
-            selected={selectedIndex === 0}
-            onClick={(event) => this.handleMenuItemClick(event, 0, removeFn)}
+            onClick={(event) => this.handleMenuItemClick(event, removeFn)}
           >
             Remove
+          </MenuItem>
+          <MenuItem
+            key="deposit"
+            onClick={(event) => this.handleMenuItemClick(event, redirectToDeposit)}
+          >
+            Create deposit
+          </MenuItem>
+          <MenuItem
+            key="deposits"
+            onClick={(event) => this.handleMenuItemClick(event, redirectToDeposits)}
+          >
+            View deposits
           </MenuItem>
         </Menu>
       </div>

@@ -27,7 +27,13 @@ class ClientsScreen extends React.PureComponent {
         sortable: false,
         width: 150,
         disableClickEventBubbling: true,
-        renderCell: (params) => <ActionMenu removeFn={() => this.removeClient(params.row.id)} />,
+        renderCell: (params) => (
+          <ActionMenu
+            removeFn={() => this.removeClient(params.row.id)}
+            redirectToDeposit={() => this.redirectToDeposit(params.row.id)}
+            redirectToDeposits={() => this.redirectToDeposits(params.row.id)}
+          />
+        ),
       }],
       rows: [],
       isLoading: false,
@@ -38,6 +44,16 @@ class ClientsScreen extends React.PureComponent {
     this.setState({ isLoading: true });
     this.getClients();
   }
+
+  redirectToDeposit = (id) => {
+    const { history } = this.props;
+    history.push(`${PAGES.CLIENT_FORM}/${id}/deposits/new`);
+  };
+
+  redirectToDeposits = (id) => {
+    const { history } = this.props;
+    history.push(`${PAGES.CLIENT_FORM}/${id}/deposits`);
+  };
 
   removeClient = (id) => {
     const { service } = this.props;

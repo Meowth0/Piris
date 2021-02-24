@@ -19,6 +19,7 @@ class Navbar extends React.PureComponent {
       <BottomNavigation value={activePage} showLabels>
         <BottomNavigationAction label="Clients" value={PAGES.CLIENT_LIST} icon={<PeopleIcon />} onClick={() => this.onPageChange(PAGES.CLIENT_LIST)} />
         <BottomNavigationAction label="Client form" value={PAGES.CLIENT_FORM} icon={<PermIdentityIcon />} onClick={() => activePage !== PAGES.CLIENT_FORM && this.onPageChange(`${PAGES.CLIENT_FORM}/new`)} />
+        <BottomNavigationAction label="Accounts" value={PAGES.ACCOUNTS} icon={<PermIdentityIcon />} onClick={() => activePage !== PAGES.ACCOUNTS && this.onPageChange(PAGES.ACCOUNTS)} />
       </BottomNavigation>
     );
   }

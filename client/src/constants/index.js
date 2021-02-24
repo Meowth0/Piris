@@ -1,6 +1,8 @@
 export const PAGES = {
   CLIENT_LIST: '/',
   CLIENT_FORM: '/client-form',
+  ACCOUNTS: '/accounts',
+  DEPOSITS: '/deposits',
 };
 
 export const DATE_FORMAT = 'MM/DD/yyyy';
@@ -15,6 +17,8 @@ export const VALIDATION_SCHEMA = {
   HOME_PHONE: /^$|^[0-9]{7}$/,
   MOBILE_PHONE: /^$|^(80|\+375)(33|29|44|25)[0-9]{7}$/,
   MONEY: /^[0-9]+(\.[0-9]+)*$/,
+  REQUIRED_NUMBER: /^\d+$/,
+  REQUIRED_ACCOUNT_NUMBER: /^\d{13}$/,
 };
 
 export const GENDER = {
@@ -92,5 +96,27 @@ export const MARTIAL_STATUSES = [
   {
     id: 'single',
     value: 'Single',
+  },
+];
+
+export const ACCOUNT_TYPES = [
+  {
+    id: 'active',
+    value: 'Active',
+  },
+  {
+    id: 'passive',
+    value: 'Passive',
+  },
+];
+
+export const DEPOSIT_TYPES = [
+  {
+    id: 'revocable',
+    value: 'Revocable',
+  },
+  {
+    id: 'irrevocable',
+    value: 'Irrevocable',
   },
 ];
